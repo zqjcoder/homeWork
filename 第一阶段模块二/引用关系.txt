@@ -1,0 +1,17 @@
+org.springframework.context.support.AbstractApplicationContext#finishBeanFactoryInitialization
+   org.springframework.beans.factory.support.DefaultListableBeanFactory#getBean(Class<T>)
+    org.springframework.beans.factory.support.AbstractBeanFactory#doGetBean（从缓存中获取bean，如果有直接获取，如果没有则创建，此时执行bean真正的创建过程）
+	    org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#getSingleton(将其加入到正在创建bean的标识队列)
+		     org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#createBean（创建bean)   
+			      org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#doCreateBean（实例化，此时创建了一个不完整的bean放入三级缓存中）
+				      org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#addSingletonFactory(创建完成后放入三级缓存)
+					      org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#populateBean（填充A对象属性，此时发现A依赖B）
+						      org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#applyPropertyValues（处理属性依赖）
+							     org.springframework.beans.factory.support.BeanDefinitionValueResolver#resolveReference(解决依赖，此时发现没有B对象，因此需要创建B对象)
+								    org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#doCreateBean（此时创建B，走与A创建相同的流程）
+									
+				        org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#getSingleton(String, ObjectFactory<?>)（，B创建实例完成后，填充属性，发现依赖A，B获取A实例bean，先从一级缓存中取--》再从二级缓存中取，发现没有，则从三级缓存中取，此时A在三级缓存中已经有了，从三级缓存拿）
+				            org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#addSingleton（将此时B装配完成，实例bean B放入一级缓存，并从加入三级缓存和二级缓存中移除）
+
+   org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#addSingleton（B完全创建完成，放入一级缓存后，A可以从单例缓存迟中获取到B，完成装配）
+   最后A取出B，则完成完全装配
