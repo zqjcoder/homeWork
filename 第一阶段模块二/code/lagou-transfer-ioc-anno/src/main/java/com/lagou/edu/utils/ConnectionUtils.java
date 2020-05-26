@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author 应癫
  * 使用自定义注解完成实例初始化
  */
-@MyService("connectionUtils")
+@MyService
 public class ConnectionUtils {
 
     //@MyAutoWired

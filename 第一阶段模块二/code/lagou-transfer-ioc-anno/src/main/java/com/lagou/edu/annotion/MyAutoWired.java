@@ -1,8 +1,5 @@
 package com.lagou.edu.annotion;
 
-import org.springframework.core.annotation.AliasFor;
-import org.springframework.stereotype.Component;
-
 import java.lang.annotation.*;
 
 /**

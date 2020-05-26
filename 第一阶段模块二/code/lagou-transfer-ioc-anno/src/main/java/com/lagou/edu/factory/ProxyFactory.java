@@ -22,9 +22,8 @@ import java.lang.reflect.Proxy;
  */
 
 
-@MyService("proxyFactory")
+@MyService
 public class ProxyFactory {
-
 
     @MyAutoWired
     private TransactionManager transactionManager;

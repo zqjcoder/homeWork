@@ -12,7 +12,7 @@ import java.sql.SQLException;
  *
  * 事务管理器类：负责手动事务的开启、提交、回滚
  */
-@MyService("transactionManager")
+@MyService
 public class TransactionManager {
 
 
