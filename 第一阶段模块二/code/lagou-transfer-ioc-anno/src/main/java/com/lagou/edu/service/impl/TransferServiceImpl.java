@@ -32,11 +32,6 @@ public class TransferServiceImpl implements TransferService {
     @Override
     @MyTransactional
     public void transfer(String fromCardNo, String toCardNo, int money) throws Exception {
-
-        /*try{
-            // 开启事务(关闭事务的自动提交)
-            TransactionManager.getInstance().beginTransaction();*/
-
             Account from = jdbcAccountDaoImpl.queryAccountByCardNo(fromCardNo);
             Account to = jdbcAccountDaoImpl.queryAccountByCardNo(toCardNo);
 
@@ -44,7 +39,7 @@ public class TransferServiceImpl implements TransferService {
             to.setMoney(to.getMoney()+money);
 
             jdbcAccountDaoImpl.updateAccountByCardNo(to);
-            //int c = 1/0;
+           // int c = 1/0;
             jdbcAccountDaoImpl.updateAccountByCardNo(from);
     }
 }

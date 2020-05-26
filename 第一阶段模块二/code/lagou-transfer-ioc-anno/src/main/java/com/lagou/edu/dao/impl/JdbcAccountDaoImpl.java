@@ -3,11 +3,7 @@ package com.lagou.edu.dao.impl;
 import com.lagou.edu.annotion.MyAutoWired;
 import com.lagou.edu.annotion.MyService;
 import com.lagou.edu.pojo.Account;
-import com.lagou.edu.dao.AccountDao;
 import com.lagou.edu.utils.ConnectionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +13,7 @@ import java.sql.ResultSet;
  * @author 应癫
  */
 @MyService
-public class JdbcAccountDaoImpl implements AccountDao {
+public class JdbcAccountDaoImpl {
 
 
     // @Autowired 按照类型注入
@@ -35,7 +31,6 @@ public class JdbcAccountDaoImpl implements AccountDao {
         System.out.println("销毁方法.....");
     }
 
-    @Override
     public Account queryAccountByCardNo(String cardNo) throws Exception {
         //从连接池获取连接
         // Connection con = DruidUtils.getInstance().getConnection();
@@ -59,7 +54,6 @@ public class JdbcAccountDaoImpl implements AccountDao {
         return account;
     }
 
-    @Override
     public int updateAccountByCardNo(Account account) throws Exception {
 
         // 从连接池获取连接

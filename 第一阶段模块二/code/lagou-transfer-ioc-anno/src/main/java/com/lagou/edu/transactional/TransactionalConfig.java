@@ -1,6 +1,7 @@
 package com.lagou.edu.transactional;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.lagou.edu.annotion.MyService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -8,7 +9,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
-
+@MyService
 public class TransactionalConfig {
     @Bean
     public DataSource dataSource() throws PropertyVetoException {
